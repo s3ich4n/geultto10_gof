@@ -204,7 +204,7 @@ spoiler alert: 여기서는 스트래티지 패턴이 사용됨
 
 가장 중요한 그림이 나온다. 디자인 패턴 간의 관계를 표현하는 그림이다.
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/9fb66481-b457-4ce7-b4e2-bd92f3ba1fdb/830400a8-ccc3-4ea9-825c-384f75111c25/image.png)
+![디자인 패턴 간 관계](./media/01.png)
 
 ## 디자인 패턴이 문제를 해결하는 방법
 
@@ -715,7 +715,7 @@ public class Main {
     3. 변할 수 있는 개념을 캡슐화할 것 - 디자인 패턴의 핵심 주제
     4. 아래 표에서는 디자인 패턴이 독립적으로 변할 수 있게 해주는 디자인 요소들을 나열하고 있음 → 이를 통해 재설계 없이도 변화를 적용할 수 있다(!)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/9fb66481-b457-4ce7-b4e2-bd92f3ba1fdb/b6770797-7290-4b11-b2ac-13b872a2cbb2/image.png)
+![디자인 패턴 선택방안 카탈로그](./media/02.png)
 
 ### 디자인 패턴 쓰는 법
 
