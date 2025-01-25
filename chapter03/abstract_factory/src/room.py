@@ -1,5 +1,5 @@
-from map_site import MapSite
-from enums import Direction
+from src.map_site import MapSite
+from src.enums import Direction
 
 
 class Room(MapSite):

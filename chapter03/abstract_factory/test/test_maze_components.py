@@ -1,7 +1,7 @@
-from door import Door
-from enums import Direction
-from room import Room
-from wall import Wall
+from src.door import Door
+from src.enums import Direction
+from src.room import Room
+from src.wall import Wall
 
 
 class TestMazeComponents:
