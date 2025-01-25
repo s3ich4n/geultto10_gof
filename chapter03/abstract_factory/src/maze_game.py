@@ -7,8 +7,8 @@ from enums import Direction
 
 class MazeGame:
     def create_maze(self):
-        a_maze = Maze()
-        r1 = Room(1)
+        a_maze = Maze()     # concrete class 가 하드코딩 되어있음
+        r1 = Room(1)        # 자연스럽게 변화에 취약해짐
         r2 = Room(2)
         the_door = Door(r1, r2)
         

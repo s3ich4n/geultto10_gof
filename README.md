@@ -4,10 +4,9 @@
 
 - [x] 1장
 - [x] 2장
-- [ ] 디자인패턴 카탈로그
 - [ ] 3장
-    - [ ] Abstract Factory
-    - [ ] Builder
+    - [x] Abstract Factory
+    - [x] Builder
     - [ ] Factory Method
     - [ ] Prototype
     - [ ] Singleton 
