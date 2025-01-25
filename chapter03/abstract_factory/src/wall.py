@@ -1,4 +1,4 @@
-from map_site import MapSite
+from src.map_site import MapSite
 
 
 class Wall(MapSite):

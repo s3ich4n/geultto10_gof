@@ -1,17 +1,18 @@
 import pytest
-from maze_game import MazeGame
-from room import Room
-from door import Door
-from wall import Wall
-from enums import Direction
+from src.factories.normal_maze_factory import NormalMazeFactory
+from src.maze_game import MazeGame
+from src.room import Room
+from src.door import Door
+from src.wall import Wall
+from src.enums import Direction
 
 
-def test_create_maze():
+def test_create_normal_maze():
     # Given
     game = MazeGame()
     
     # When
-    maze = game.create_maze()
+    maze = game.create_maze(NormalMazeFactory())
     
     # Then
     # 1. 미로에 두 개의 방이 있는지 확인

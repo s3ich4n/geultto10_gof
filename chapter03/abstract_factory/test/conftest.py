@@ -1,4 +1,4 @@
-from maze_game import MazeGame
+from src.maze_game import MazeGame
 import pytest
 
 # Fixtures
