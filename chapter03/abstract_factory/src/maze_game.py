@@ -15,6 +15,7 @@ class MazeGame:
         a_maze.add_room(r1)
         a_maze.add_room(r2)
         
+        # 그렇다보니 자연스럽게 하드코딩했어야 했는데...
         r1.set_side(Direction.NORTH, Wall())
         r1.set_side(Direction.EAST, the_door)
         r1.set_side(Direction.SOUTH, Wall())
