@@ -1,5 +1,9 @@
 import pytest
 
+from src.bombed import (
+    RoomWithBomb,
+    BombedWall,
+)
 from src.enchanted import (
     EnchantedWall,
     EnchantedDoor,
@@ -78,3 +82,16 @@ def test_create_enchanted_maze(enchanted_maze):
     assert door1 is door2  # 같은 문 객체를 참조하는지 확인
     assert door1.other_side_from(room1) is room2
     assert door2.other_side_from(room2) is room1
+
+
+def test_create_bombed_maze(bombed_maze):
+    # Verify rooms are created as RoomWithBomb
+    room1 = bombed_maze.room_no(1)
+    room2 = bombed_maze.room_no(2)
+    
+    assert isinstance(room1, RoomWithBomb)
+    assert isinstance(room2, RoomWithBomb)
+    
+    # Verify walls are created as BombedWall
+    north_wall = room1.get_side(Direction.NORTH)
+    assert isinstance(north_wall, BombedWall)
