@@ -2,6 +2,7 @@ import pytest
 
 from src.maze_game import MazeGame
 from src.factories.enchanted_maze_factory import EnchantedMazeFactory
+from src.factories.bombed_maze_factory import BombedMazeFactory
 from src.factories.normal_maze_factory import NormalMazeFactory
 
 
@@ -18,3 +19,8 @@ def normal_maze(maze_game):
 @pytest.fixture
 def enchanted_maze(maze_game):
     return maze_game.create_maze(EnchantedMazeFactory())
+
+
+@pytest.fixture
+def bombed_maze(maze_game):
+    return maze_game.create_maze(BombedMazeFactory())
