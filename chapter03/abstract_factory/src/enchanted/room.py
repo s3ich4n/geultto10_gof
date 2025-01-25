@@ -1,5 +1,5 @@
-from .spell import Spell    # circular import issue resolved
 from src.room import Room
+from .spell import Spell    # circular import issue resolved
 
 
 class EnchantedRoom(Room):
