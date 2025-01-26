@@ -91,7 +91,23 @@ Motif[^1] 나 Presentation Manager[^2](이하 PM) 같은 GUI 툴킷(현대 GUI�
 
 # Known Uses
 
-- Qt
+```cpp
+// 추상 팩토리 역할
+class QStyleFactory {
+public:
+    // 다양한 플랫폼별 스타일 생성
+    static QStyle *create(const QString &key);  // Windows, Fusion, macOS 등
+};
+
+// 실제 사용 예시
+QApplication app(argc, argv);
+// Windows 스타일로 설정
+app.setStyle(QStyleFactory::create("Windows")); 
+// macOS 스타일로 설정
+app.setStyle(QStyleFactory::create("Macintosh"));
+```
+
+이런 식으로 필요한 스타일을 내 마음대로 꺼내쓸 수 있음[^5].
 
 # Related Patterns
 
@@ -102,3 +118,4 @@ Motif[^1] 나 Presentation Manager[^2](이하 PM) 같은 GUI 툴킷(현대 GUI�
 [^2]: https://en.wikipedia.org/wiki/Presentation_Manager
 [^3]: 런타임에 결정되게 한다는 뜻
 [^4]: (글쓴이의 의견) 저는 굳이 장단점 형식으로 사족을 달지않았고 이유가 있습니다. 왜냐하면 패턴의 사용은 장단점으로 볼 게 아니라, 쓰는 사람이 이 특징을 알고 트레이드오프 해야한다고 생각했기 때문입니다. 따라서 앞으로도 계속 그렇게 작성할 예정입니다.
+[^5]: [예시링크 1 - 공식문서](https://doc.qt.io/qt-6/qstylefactory.html) [예시링크 2 - 네이버 블로그](https://m.blog.naver.com/msyang59/220924447943)
