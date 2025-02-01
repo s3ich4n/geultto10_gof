@@ -9,7 +9,7 @@ from src.enums import Direction
 
 
 class MazeGame:
-    def create_maze(self, factory: MazeFactory):
+    def create_maze(self, factory: MazeBuilder):
         a_maze = factory.make_maze()
         r1: Room = factory.make_room(1)
         r2: Room = factory.make_room(2)
