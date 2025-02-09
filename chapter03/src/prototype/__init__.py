@@ -1,0 +1,4 @@
+from .bombed_maze import bombed_prototype_factory
+from .enchanted_maze import enchanted_prototype_factory
+from .maze_prototype import MazePrototypeFactory
+from .normal_maze import normal_prototype_factory
