@@ -7,9 +7,9 @@
 - [ ] 3장
     - [x] Abstract Factory
     - [x] Builder
-    - [ ] Factory Method
-    - [ ] Prototype
-    - [ ] Singleton 
+    - [x] Factory Method
+    - [x] Prototype
+    - [x] Singleton 
 - [ ] 4장
     - [ ] Adapter
     - [ ] Bridge
