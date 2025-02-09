@@ -32,7 +32,6 @@
 
 # Applicability
 
-
 - 시스템이 제품들이 어떻게 생성되고, 구성되고, 표현되는지와 독립적이어야 할 때
 - 인스턴스화할 클래스들이 실행 시간에 결정될 때 (예: 동적 로딩을 통해)
 - 제품들의 클래스 계층구조와 병행하는 팩토리들의 클래스 계층구조를 만드는 것을 피하고 싶을 때
@@ -42,7 +41,7 @@
 # Structures
 
 ![refactoring.guru의 Prototype 그림](https://refactoring.guru/images/patterns/diagrams/prototype/structure-indexed-2x.png)
-  
+
 # Participants
 
 - _Prototype_ (예: `Graphic`)
@@ -59,20 +58,20 @@
 # Consequences
 
 1. 런타임에 제품을 추가/제거 가능
-   - Motivation 예시: 새로운 음표 타입이 필요할 때, `MusicalNote` 클래스의 새로운 인스턴스를 prototype으로 등록하기만 하면 됨
-   - 코드 수정 없이 런타임에 새로운 음표 타입 추가 가능
+    - Motivation 예시: 새로운 음표 타입이 필요할 때, `MusicalNote` 클래스의 새로운 인스턴스를 prototype으로 등록하기만 하면 됨
+    - 코드 수정 없이 런타임에 새로운 음표 타입 추가 가능
 2. 값을 변경하여 새로운 객체 명세
-   - Motivation 예시: 하나의 `MusicalNote` 클래스로 온음표, 2분음표 등을 비트맵과 지속시간만 다르게 설정하여 생성
-   - 새로운 클래스를 만들지 않고도 객체의 상태값만 변경하여 다양한 음표 표현 가능
+    - Motivation 예시: 하나의 `MusicalNote` 클래스로 온음표, 2분음표 등을 비트맵과 지속시간만 다르게 설정하여 생성
+    - 새로운 클래스를 만들지 않고도 객체의 상태값만 변경하여 다양한 음표 표현 가능
 3. 구조를 변경하여 새로운 객체 명세
-   - Motivation 예시: 악보는 여러 음표, 쉼표, 악보선 등이 조합된 복합 구조
-   - 이러한 복합 구조도 하나의 prototype으로 등록하여 재사용 가능
+    - Motivation 예시: 악보는 여러 음표, 쉼표, 악보선 등이 조합된 복합 구조
+    - 이러한 복합 구조도 하나의 prototype으로 등록하여 재사용 가능
 4. 서브클래싱 감소
-   - Motivation의 문제점: "각 음악 객체마다 `GraphicTool`을 상속받으면 너무 많은 서브클래스가 생김"
-   - 해결: prototype 패턴을 사용하면 `GraphicTool` 하나로 여러 종류의 음표를 생성 가능
+    - Motivation의 문제점: "각 음악 객체마다 `GraphicTool`을 상속받으면 너무 많은 서브클래스가 생김"
+    - 해결: prototype 패턴을 사용하면 `GraphicTool` 하나로 여러 종류의 음표를 생성 가능
 5. 동적 애플리케이션 구성
-   - Motivation 예시: 프레임워크(`GraphicTool`)와 애플리케이션 특화 클래스들(`MusicalNote` 등) 분리
-   - 음악 관련 클래스들을 동적으로 로드하고 prototype으로 등록 가능
+    - Motivation 예시: 프레임워크(`GraphicTool`)와 애플리케이션 특화 클래스들(`MusicalNote` 등) 분리
+    - 음악 관련 클래스들을 동적으로 로드하고 prototype으로 등록 가능
 
 ## 한계점과 Motivation의 연관성
 
@@ -82,18 +81,18 @@
 # Implementation
 
 1. Prototype 관리자 (Registry) 사용
-   - 동적으로 prototype을 관리할 때 필요
-   - 키-값 형태로 prototype을 저장하고 검색하는 시스템
-   - 런타임에 시스템 확장 가능
+    - 동적으로 prototype을 관리할 때 필요
+    - 키-값 형태로 prototype을 저장하고 검색하는 시스템
+    - 런타임에 시스템 확장 가능
 2. Clone 연산의 올바른 구현
-   - 얕은 복사 vs 깊은 복사 문제
-   - 순환 참조 처리
-   - 언어별 기본 제공 기능의 한계
-   - Save/Load를 통한 대안적 구현 방법
+    - 얕은 복사 vs 깊은 복사 문제
+    - 순환 참조 처리
+    - 언어별 기본 제공 기능의 한계
+    - Save/Load를 통한 대안적 구현 방법
 3. 복제본 초기화 방법
-   - Clone 시점의 매개변수 전달의 한계
-   - 별도의 Initialize 연산 필요성
-   - 메모리 관리 주의사항
+    - Clone 시점의 매개변수 전달의 한계
+    - 별도의 Initialize 연산 필요성
+    - 메모리 관리 주의사항
 
 # Sample Code
 
@@ -101,24 +100,82 @@
 > - 커밋 이력을 통해 코드를 어떻게 리팩터 했는지 참고하시면 좋습니다.
 > - 테스트는 루트 디렉터리의 `README.md` 파일의 가이드를 따라하시면 구동하실 수 있습니다.
 
+# Known Usages
+
+- 객체 풀 생성? - 그렇다면 SQLAlchemy의 Pool이 Prototype을 쓰는지 살펴봅시다.
+
+## `Pool` 객체란?
+
+- [DB-API 2.0](https://peps.python.org/pep-0249/) 스펙에 맞는 `connect()` 구현체에 대해 커넥션 풀 구현을 제공합니다.
+
+```mermaid
+classDiagram
+%% Base Pool 클래스와 그 하위 구현체들
+    class Pool {
+        +connect()
+        +recycle()
+    }
+    class SingletonPool
+    class QueuePool
+    class NullPool
+    class StaticPool
+    class AssertionPool
+
+    Pool <|-- SingletonPool
+    Pool <|-- QueuePool
+    Pool <|-- NullPool
+    Pool <|-- StaticPool
+    Pool <|-- AssertionPool
+%% 내부 연결 관리 클래스들
+    class _ConnectionRecord {
+        -connection: DBAPI Connection
+        -dialect
+        +checkout()
+        +checkin()
+    }
+    class _ConnectionFairy {
+        -record: _ConnectionRecord
+        +close()
+        +execute()
+        +cursor()  "Returns a _CursorFairy"
+    }
+    class _CursorFairy {
+        -cursor: DBAPI Cursor
+        +close()
+        +fetchone()
+        +fetchall()
+    }
+    class _DBProxy {
+        -target: DBAPI Connection
+        +callThrough()
+    }
+
+%% 클래스들 간의 관계
+    Pool "1" --> "*" _ConnectionRecord: manages
+    _ConnectionRecord "1" --> "0..*" _ConnectionFairy: creates
+    _ConnectionFairy --> _DBProxy: wraps
+    _ConnectionFairy --> _CursorFairy: creates
+
+```
+
 # Related Patterns
 
 1. Prototype vs Abstract Factory
-   - 둘 다 객체 생성을 다루는 생성 패턴이라 경쟁 관계
-   - 하지만 결합도 가능
-       ```python
-       class AbstractFactory:
-           def __init__(self, prototype_a, prototype_b):
-               self.prototype_a = prototype_a  # 프로토타입 저장
-               self.prototype_b = prototype_b
-       
-           def create_product_a(self):
-               return self.prototype_a.clone()  # 프로토타입에서 복제
-       ```
+    - 둘 다 객체 생성을 다루는 생성 패턴이라 경쟁 관계
+    - 하지만 결합도 가능
+        ```python
+        class AbstractFactory:
+            def __init__(self, prototype_a, prototype_b):
+                self.prototype_a = prototype_a  # 프로토타입 저장
+                self.prototype_b = prototype_b
+        
+            def create_product_a(self):
+                return self.prototype_a.clone()  # 프로토타입에서 복제
+        ```
 2. Composite 패턴과의 관계
-   - Composite: 객체들의 트리 구조를 표현
-   - 예시: 음악 편집기에서 전체 악보(복잡한 구조)를 프로토타입으로 저장하고 재사용
+    - Composite: 객체들의 트리 구조를 표현
+    - 예시: 음악 편집기에서 전체 악보(복잡한 구조)를 프로토타입으로 저장하고 재사용
 3. Decorator 패턴과의 관계
-   - Decorator: 객체에 동적으로 책임 추가
-   - 예시: 특정 스타일이 적용된 UI 컴포넌트를 프로토타입으로 저장하고 재사용
+    - Decorator: 객체에 동적으로 책임 추가
+    - 예시: 특정 스타일이 적용된 UI 컴포넌트를 프로토타입으로 저장하고 재사용
   
