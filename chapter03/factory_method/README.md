@@ -179,13 +179,16 @@ class DBConnection:
     def connect(self):
         pass
 
+
 class MySQLConnection(DBConnection):
     def connect(self):
         return mysql.connector.connect(...)
 
+
 class PostgreSQLConnection(DBConnection):
     def connect(self):
         return psycopg2.connect(...)
+
 
 class ConnectionFactory:
     @staticmethod
@@ -196,10 +199,10 @@ class ConnectionFactory:
             return PostgreSQLConnection()
 ```
 
-# Related Patterns
+# Related patterns
 
 - 추상 팩토리
-    - 추상 팩토리는 여러 개의 팩토리 메서드를 포함하는 더 큰 범위의 패턴 
+    - 추상 팩토리는 여러 개의 팩토리 메서드를 포함하는 더 큰 범위의 패턴
     - E.g., UI 테마를 만드는 추상 팩토리는 버튼, 체크박스, 라디오 버튼 등을 만드는 여러 팩토리 메서드를 포함할 수 있음
 - 템플릿 메서드
     - 알고리즘의 뼈대를 정의하고, 일부 단계를 하위 클래스에 위임
