@@ -161,7 +161,7 @@ classDiagram
 
 # Structure
 
-![refactoring.guru의 Bridge](https://refactoring.guru/images/patterns/diagrams/bridge/structure-en-indexed-2x.png)
+![refactoring.guru의 Bridge 예시](https://refactoring.guru/images/patterns/diagrams/bridge/structure-en-indexed-2x.png)
 
 # Participants
 
