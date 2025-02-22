@@ -11,59 +11,56 @@ class TestTvWithRemoteControl:
 
     @pytest.fixture
     def remote_control(self, tv):
-        tv_with_remote_control = RemoteControl(device=tv)
+        return RemoteControl(device=tv)
 
-        return tv_with_remote_control
-
+    # 전원 관련 테스트
     def test_tv_turn_on(self, tv, remote_control):
-        # 켜기
         remote_control.toggle_power()
         assert tv.is_enabled is True
 
     def test_tv_turn_off(self, tv, remote_control):
-        # 껐다켜기
         remote_control.toggle_power()
         remote_control.toggle_power()
         assert tv.is_enabled is False
 
-    def test_tv_volume_up(self, tv, remote_control):
-        # 볼륨 줄이기
-        remote_control.volume_up()
-        assert tv.volume == 10
+    # 볼륨 관련 테스트 (ids 사용)
+    @pytest.mark.parametrize(
+        "actions, expected",
+        [
+            (["volume_up"], 10),  # 볼륨 1번 올리기
+            (["volume_up", "volume_down"], 0),  # 볼륨 올리고 내리기
+            (["volume_down"], 0),  # 최소값은 0
+            (["volume_up"] * 11, 100),  # 최대값은 100 (10씩 증가, 11번 호출)
+        ],
+        ids=[
+            "volume_up_once",
+            "volume_up_then_down",
+            "volume_down_minimum_value_0",
+            "volume_up_maximum_value_100",
+        ],
+    )
+    def test_tv_volume(self, tv, remote_control, actions, expected):
+        for action in actions:
+            getattr(remote_control, action)()
+        assert tv.volume == expected
 
-    def test_tv_volume_down(self, tv, remote_control):
-        # 볼륨 늘리기
-        remote_control.volume_up()
-        remote_control.volume_down()
-        assert tv.volume == 0
-
-    def test_tv_volume_minimum_value_is_0(self, tv, remote_control):
-        # 볼륨 최소값은 0
-        remote_control.volume_down()
-        assert tv.volume == 0
-
-    def test_tv_volume_maximum_value_is_100(self, tv, remote_control):
-        # 볼륨 최대값은 100
-        for _ in range(11):
-            remote_control.volume_up()
-        assert tv.volume == 100
-
-    def test_tv_channel_up(self, tv, remote_control):
-        # 채널 올리기
-        remote_control.channel_up()
-        assert tv.channel == 2
-
-    def test_tv_channel_down(self, tv, remote_control):
-        # 채널 올리기
-        remote_control.channel_up()
-        remote_control.channel_down()
-        assert tv.channel == 1
-
-    def test_tv_channel_minimum_value_is_1(self, tv, remote_control):
-        remote_control.channel_down()
-        assert tv.channel == 1
-
-    def test_tv_channel_maximum_value_is_99(self, tv, remote_control):
-        for _ in range(99):
-            remote_control.channel_up()
-        assert tv.channel == 99
+    # 채널 관련 테스트 (ids 사용)
+    @pytest.mark.parametrize(
+        "actions, expected",
+        [
+            (["channel_up"], 2),  # 채널 1번 올리기
+            (["channel_up", "channel_down"], 1),  # 채널 올리고 내리기
+            (["channel_down"], 1),  # 최소값은 1
+            (["channel_up"] * 99, 99),  # 최대값은 99
+        ],
+        ids=[
+            "channel_up_once",
+            "channel_up_then_down",
+            "channel_down_minimum_value_1",
+            "channel_up_maximum_value_99",
+        ],
+    )
+    def test_tv_channel(self, tv, remote_control, actions, expected):
+        for action in actions:
+            getattr(remote_control, action)()
+        assert tv.channel == expected

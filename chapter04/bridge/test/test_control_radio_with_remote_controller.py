@@ -26,44 +26,44 @@ class TestRadioWithRemoteControl:
         remote_control.toggle_power()
         assert radio.is_enabled is False
 
-    def test_radio_volume_up(self, radio, remote_control):
-        # 볼륨 줄이기
-        remote_control.volume_up()
-        assert radio.volume == 1
+    # 볼륨 관련 테스트 (ids 사용)
+    @pytest.mark.parametrize(
+        "actions, expected",
+        [
+            (["volume_up"], 1),
+            (["volume_up", "volume_down"], 0),
+            (["volume_down"], 0),
+            (["volume_up"] * 101, 10),
+        ],
+        ids=[
+            "volume_up_once",  # 볼륨 1번 올리기
+            "volume_up_then_down",  # 볼륨 올리고 내리기
+            "volume_down_minimum_value_0",  # 최소값 확인
+            "volume_up_maximum_value_10",  # 최대값 확인
+        ],
+    )
+    def test_radio_volume(self, radio, remote_control, actions, expected):
+        for action in actions:
+            getattr(remote_control, action)()
+        assert radio.volume == expected
 
-    def test_radio_volume_down(self, radio, remote_control):
-        # 볼륨 늘리기
-        remote_control.volume_up()
-        remote_control.volume_down()
-        assert radio.volume == 0
-
-    def test_radio_volume_minimum_value_is_0(self, radio, remote_control):
-        # 볼륨 최소값은 0
-        remote_control.volume_down()
-        assert radio.volume == 0
-
-    def test_radio_volume_maximum_value_is_10(self, radio, remote_control):
-        # 볼륨 최대값은 10
-        for _ in range(11):
-            remote_control.volume_up()
-        assert radio.volume == 10
-
-    def test_radio_channel_up(self, radio, remote_control):
-        # 채널 올리기
-        remote_control.channel_up()
-        assert radio.channel == 1010
-
-    def test_radio_channel_down(self, radio, remote_control):
-        # 채널 올리기
-        remote_control.channel_up()
-        remote_control.channel_down()
-        assert radio.channel == 1000
-
-    def test_radio_channel_minimum_value_is_1000(self, radio, remote_control):
-        remote_control.channel_down()
-        assert radio.channel == 1000
-
-    def test_radio_channel_maximum_value_is_9900(self, radio, remote_control):
-        for _ in range(990):
-            remote_control.channel_up()
-        assert radio.channel == 9900
+    # 채널 관련 테스트 (ids 사용)
+    @pytest.mark.parametrize(
+        "actions, expected",
+        [
+            (["channel_up"], 1010),
+            (["channel_up", "channel_down"], 1000),
+            (["channel_down"], 1000),
+            (["channel_up"] * 990, 9900),
+        ],
+        ids=[
+            "channel_up_once",  # 채널 1번 올리기
+            "channel_up_then_down",  # 채널 올리고 내리기
+            "channel_down_minimum_value_1000",  # 최소값 확인
+            "channel_up_maximum_value_9900",  # 최대값 확인
+        ],
+    )
+    def test_radio_channel(self, radio, remote_control, actions, expected):
+        for action in actions:
+            getattr(remote_control, action)()
+        assert radio.channel == expected
