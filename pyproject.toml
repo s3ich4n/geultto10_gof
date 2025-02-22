@@ -12,6 +12,7 @@ python = "^3.12"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.3.4"
 multipledispatch = "^1.0.0"
+freezegun = "^1.5.1"
 
 
 [tool.poetry.group.dev.dependencies]
