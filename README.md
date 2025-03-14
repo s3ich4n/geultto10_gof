@@ -4,20 +4,20 @@
 
 - [x] 1장
 - [x] 2장
-- [ ] 3장
+- [x] 3장
     - [x] Abstract Factory
     - [x] Builder
     - [x] Factory Method
     - [x] Prototype
-    - [x] Singleton 
-- [ ] 4장
-    - [ ] Adapter
-    - [ ] Bridge
-    - [ ] Composite
+    - [x] Singleton
+- [x] 4장
+    - [x] Adapter
+    - [x] Bridge
+    - [x] Composite
     - [ ] Decorator
     - [ ] Facade
     - [ ] Flyweight
-    - [ ] Proxy 
+    - [ ] Proxy
 - [ ] 5장
     - [ ] Chain of Responsibility
     - [ ] Command
@@ -29,7 +29,7 @@
     - [ ] State
     - [ ] Strategy
     - [ ] Template Method
-    - [ ] Visitor 
+    - [ ] Visitor
 - [ ] 6장
 
 # 환경구성
