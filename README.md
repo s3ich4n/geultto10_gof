@@ -14,8 +14,8 @@
     - [x] Adapter
     - [x] Bridge
     - [x] Composite
-    - [ ] Decorator
-    - [ ] Facade
+    - [x] Decorator
+    - [x] Facade
     - [ ] Flyweight
     - [ ] Proxy
 - [ ] 5장
